@@ -30,7 +30,7 @@ pipeline {
               def v = version()
               def branchVersion = branchVersion()
               echo "La version es ${v}, la del branch es ${branchVersion}"
-              echo "Demo feature"
+              echo "Test feature 2 mroe"
               if (v != branchVersion) {
                 sh "mvn versions:set -DnewVersion=${branchVersion} -DgenerateBackupPoms=false"
                 sh "git add pom.xml && git commit -m 'changed version to ${branchVersion}' && git push --set-upstream origin ${GIT_BRANCH}"
