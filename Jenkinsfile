@@ -1,5 +1,8 @@
 pipeline {
     agent { label 'docker' }
+    triggers {
+        pollSCM ('*/2 * * * 1-5') 
+    }
     stages {
         stage('version fix for develop branch') {
           when {
