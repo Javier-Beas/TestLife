@@ -22,7 +22,7 @@ pipeline {
         }
         stage('version fix for release branches') {
           when {
-              branch "release/*"
+              branch "release/*" 
           }
 
           steps {
