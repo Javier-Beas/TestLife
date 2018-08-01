@@ -13,7 +13,7 @@ pipeline {
                 echo "No es un snapshot, añadimos -SNAPSHOT a la versión"
                 sh "mvn versions:set -DnewVersion=${v}-SNAPSHOT -DgenerateBackupPoms=false"
                 sshagent('c4ba2de8-d7d5-4a1d-8c7c-7369c21c027a') {
-                  echo 'dentro de sshagent'
+                  echo "entro de sshagent"
                   sh "git add pom.xml && git commit -m 'changed version to ${v}-SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
                 }
               }
