@@ -12,8 +12,7 @@ pipeline {
               if (!v.endsWith("-SNAPSHOT")) {
                 echo "No es un snapshot, añadimos -SNAPSHOT a la versión"
                 sh "mvn versions:set -DnewVersion=${v}-SNAPSHOT -DgenerateBackupPoms=false"
-                sshagent('c4ba2de8-d7d5-4a1d-8c7c-7369c21c027a') {
-                  echo "entro de sshagent"
+                sshagent(credentials: ['c4ba2de8-d7d5-4a1d-8c7c-7369c21c027a']) {
                   sh "git add pom.xml && git commit -m 'changed version to ${v}-SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
                 }
               }
@@ -33,10 +32,7 @@ pipeline {
               echo "Test feature 2 mroe"
               if (v != branchVersion) {
                 sh "mvn versions:set -DnewVersion=${branchVersion} -DgenerateBackupPoms=false"
-sh('git remote -v')
-sh('git show-ref')
                 sshagent(credentials: ['c4ba2de8-d7d5-4a1d-8c7c-7369c21c027a']) {
-                  echo "entro de sshagent"
                   sh "git add pom.xml && git commit -m 'changed version to ${v}-SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
                 }
               }
@@ -51,7 +47,9 @@ sh('git show-ref')
               echo "Commit: *${GIT_COMMIT}*"
               echo "From Pull de Github v0.0.4"
               currentBuild.displayName = GIT_BRANCH + "#"+ BUILD_NUMBER
-              sh "mvn clean deploy -Dmaven.javadoc.skip=true -DskipTests"   
+              sshagent(credentials: ['c4ba2de8-d7d5-4a1d-8c7c-7369c21c027a']) {
+                sh "mvn clean deploy -Dmaven.javadoc.skip=true -DskipTests"
+              }   
             }
           }
        }
