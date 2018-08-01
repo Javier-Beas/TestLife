@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mirai</groupId>
 	<artifactId>testProjectLifecycle</artifactId>
-	<version>v0.0.2</version>
+	<version>v0.0.3</version>
 	<scm>
 		<developerConnection>scm:git:https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/testProjectLifecycle</developerConnection>
 	</scm>
