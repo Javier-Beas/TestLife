@@ -33,6 +33,8 @@ pipeline {
               echo "Test feature 2 mroe"
               if (v != branchVersion) {
                 sh "mvn versions:set -DnewVersion=${branchVersion} -DgenerateBackupPoms=false"
+sh('git remote -v')
+sh('git show-ref')
                 sh "git add pom.xml && git commit -m 'changed version to ${branchVersion}' && git push --set-upstream origin ${GIT_BRANCH}"
               }
 
