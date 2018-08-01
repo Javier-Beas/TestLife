@@ -35,7 +35,7 @@ pipeline {
                 sh "mvn versions:set -DnewVersion=${branchVersion} -DgenerateBackupPoms=false"
 sh('git remote -v')
 sh('git show-ref')
-                sh "git add pom.xml && git commit -m 'changed version to ${branchVersion}' && git push --set-upstream origin ${GIT_BRANCH}"
+                sh "git add pom.xml && git commit -m 'changed version to ${branchVersion}' && git config user.email 'Jenkins@mirai.com' && git config user.name 'Jenkins' && git push --set-upstream origin ${GIT_BRANCH}"
               }
 
             }
