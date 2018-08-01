@@ -1,8 +1,5 @@
 pipeline {
     agent { label 'docker' }
-    triggers {
-        pollSCM ('*/2 * * * 1-5') 
-    }
     stages {
         stage('version fix for develop branch') {
           when {
@@ -15,7 +12,9 @@ pipeline {
               if (!v.endsWith("-SNAPSHOT")) {
                 echo "No es un snapshot, añadimos -SNAPSHOT a la versión"
                 sh "mvn versions:set -DnewVersion=${v}-SNAPSHOT -DgenerateBackupPoms=false"
-                sh "git add pom.xml && git commit -m 'changed version to -SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
+                withCredentials([string(credentialsId:'github-org-credential')]) {
+                  sh "git add pom.xml && git commit -m 'changed version to ${v}-SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
+                }
               }
             }
           }
