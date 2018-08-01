@@ -33,7 +33,9 @@ pipeline {
               echo "Test feature 2 mroe"
               if (v != branchVersion) {
                 sh "mvn versions:set -DnewVersion=${branchVersion} -DgenerateBackupPoms=false"
-                sh "git add pom.xml && git commit -m 'changed version to ${branchVersion}' && git push --set-upstream origin ${GIT_BRANCH}"
+sh('git remote -v')
+sh('git show-ref')
+                sh "git add pom.xml && git commit -m 'changed version to ${branchVersion}' && git config user.email 'Jenkins@mirai.com' && git config user.name 'Jenkins' && git push --set-upstream origin ${GIT_BRANCH}"
               }
 
             }
@@ -44,7 +46,7 @@ pipeline {
             script {
               echo "branch *${GIT_BRANCH}* current build number: *${BUILD_NUMBER}*"
               echo "Commit: *${GIT_COMMIT}*"
-              echo "From Pull de Github"
+              echo "From Pull de Github v0.0.4"
               currentBuild.displayName = GIT_BRANCH + "#"+ BUILD_NUMBER
               sh "mvn clean deploy -Dmaven.javadoc.skip=true -DskipTests"   
             }
