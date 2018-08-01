@@ -12,7 +12,7 @@ pipeline {
               if (!v.endsWith("-SNAPSHOT")) {
                 echo "No es un snapshot, añadimos -SNAPSHOT a la versión"
                 sh "mvn versions:set -DnewVersion=${v}-SNAPSHOT -DgenerateBackupPoms=false"
-                withCredentials([string(credentialsId:'github-org-credential')]) {
+                withCredentials([string(credentialsId:'614daa17-8418-4985-9162-463c003aad55')]) {
                   sh "git add pom.xml && git commit -m 'changed version to ${v}-SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
                 }
               }
