@@ -4,11 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mirai</groupId>
 	<artifactId>testProjectLifecycle</artifactId>
-<<<<<<< HEAD
 	<version>v0.0.5</version>
-=======
-	<version>v0.0.4-SNAPSHOT</version>
->>>>>>> branch 'develop' of https://github.com/Javier-Beas/TestLife.git
 	<scm>
 		<developerConnection>scm:git:https://git-codecommit.eu-central-1.amazonaws.com/v1/repos/testProjectLifecycle</developerConnection>
 	</scm>
