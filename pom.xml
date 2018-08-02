@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.mirai</groupId>
 	<artifactId>testProjectLifecycle</artifactId>
-	<version>v0.0.7</version>
+	<version>v0.0.7-SNAPSHOT</version>
 	<scm>
     <developerConnection>scm:git:git@github.com:Javier-Beas/TestLife.git</developerConnection>
 	</scm>
