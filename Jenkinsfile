@@ -21,9 +21,7 @@ pipeline {
         }
         stage('version fix for release branches') {
           when {
-            anyOf  {
               branch "hotfix.*" 
-            }
           }
 
           steps {
