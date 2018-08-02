@@ -21,7 +21,7 @@ pipeline {
         }
         stage('version fix for release branches') {
           when {
-              branch "(release/*)|(hotfix/*)" 
+              branch "(hotfix/*)" 
           }
 
           steps {
