@@ -21,8 +21,10 @@ pipeline {
         }
         stage('version fix for release branches') {
           when {
-              branch "release/*" 
+            anyOf {
               branch "hotfix/*" 
+              branch "release/*" 
+            }
           }
 
           steps {
@@ -34,7 +36,7 @@ pipeline {
               if (v != branchVersion) {
                 sh "mvn versions:set -DnewVersion=${branchVersion} -DgenerateBackupPoms=false"
                 sshagent(credentials: ['c4ba2de8-d7d5-4a1d-8c7c-7369c21c027a']) {
-                  sh "git add pom.xml && git commit -m 'changed version to ${v}-SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
+                  sh "git add pom.xml && git commit -m 'changed version to ${branchVersion}-SNAPSHOT' && git push --set-upstream origin ${GIT_BRANCH}"
                 }
               }
 
@@ -62,6 +64,6 @@ pipeline {
     return matcher ? matcher[0][1] : null
 }
 def branchVersion () {
-    def matcher = GIT_BRANCH =~ 'release/(.*)$'
+    def matcher = GIT_BRANCH =~ '(?:release|hotfix)/(.*)$'
     return matcher ? matcher[0][1] : null
 }
