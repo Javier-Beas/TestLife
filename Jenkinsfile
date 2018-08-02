@@ -32,7 +32,7 @@ pipeline {
               def v = version()
               def branchVersion = branchVersion()
               echo "La version es ${v}, la del branch es ${branchVersion}"
-              echo "Test feature 2 mroe"
+              echo "cambios"
               if (v != branchVersion) {
                 sh "mvn versions:set -DnewVersion=${branchVersion} -DgenerateBackupPoms=false"
                 sshagent(credentials: ['c4ba2de8-d7d5-4a1d-8c7c-7369c21c027a']) {
