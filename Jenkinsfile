@@ -61,6 +61,6 @@ pipeline {
     return matcher ? matcher[0][1] : null
 }
 def branchVersion () {
-    def matcher = GIT_BRANCH =~ '(?:release|hotfix)\\/(.*)$'
+    def matcher = GIT_BRANCH =~ '(?:release|hotfix)/(.*)$'
     return matcher ? matcher[0][1] : null
 }
